@@ -22,7 +22,7 @@ export function SolarSystemScene() {
       camera={{ position: [0, 35, 80], fov: 55, near: 0.1, far: 2000 }}
       shadows={!isMobile} // Disable shadows on mobile for performance
       gl={{ 
-        antialias: !isMobile, // Disable native antialias if using multisampling or on mobile
+        antialias: !isMobile, 
         alpha: false, 
         powerPreference: 'high-performance',
         stencil: false,
@@ -31,7 +31,7 @@ export function SolarSystemScene() {
       style={{ background: '#010309' }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.1} color="#1a1a4a" />
+        <ambientLight intensity={0.15} color="#1a1a4a" />
 
         <StarsBackground />
         {!isMobile && <SpaceDust />}
@@ -57,15 +57,15 @@ export function SolarSystemScene() {
 
         <EffectComposer multisampling={isMobile ? 0 : 4} enableNormalPass={false}>
           <Bloom
-            intensity={isMobile ? 0.8 : 1.2}
-            luminanceThreshold={0.2}
+            intensity={isMobile ? 1.5 : 2.2} // Increased bloom for more vibrant colors
+            luminanceThreshold={0.15}
             luminanceSmoothing={0.9}
             blendFunction={BlendFunction.ADD}
             mipmapBlur={!isMobile}
           />
           <Vignette
             offset={0.3}
-            darkness={0.7}
+            darkness={0.8} // Slightly darker vignette for more contrast
             blendFunction={BlendFunction.NORMAL}
           />
         </EffectComposer>

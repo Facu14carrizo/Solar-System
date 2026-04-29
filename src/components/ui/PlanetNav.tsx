@@ -5,6 +5,9 @@ import { useSimulation } from '../../hooks/useSimulation'
 export function PlanetNav() {
   const { selectedPlanet, selectPlanet } = useSimulation()
 
+  const isMobile = window.innerWidth < 640
+  if (isMobile && selectedPlanet) return null
+
   const all = [SUN_DATA, ...PLANETS]
 
   return (

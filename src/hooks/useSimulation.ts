@@ -36,7 +36,7 @@ interface SimulationState {
 export const useSimulation = create<SimulationState>((set) => ({
   isPlaying: true,
   speedMultiplier: 1,
-  isCinematic: false,
+  isCinematic: true,
   selectedPlanet: null,
   hoveredPlanet: null,
   showOrbits: true,

@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion'
+import { useSimulation } from '../../hooks/useSimulation'
 
 export function Header() {
+  const { selectedPlanet } = useSimulation()
+  const isMobile = window.innerWidth < 640
+
+  if (isMobile && selectedPlanet) return null
+
   return (
     <motion.div
       initial={{ y: -40, opacity: 0 }}

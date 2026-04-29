@@ -32,25 +32,25 @@ export function CameraController() {
         
         if (selectedPlanet.id === 'sun') {
           endTarget.current.set(0, 0, 0)
-          endCamPos.current.set(0, 12, 35)
+          endCamPos.current.set(0, 15, 45)
           if (isMobile) {
-            endTarget.current.y -= 4 // Move sun up on mobile
+            endTarget.current.y -= 10 // Pushing sun much higher on mobile
           }
         } else if (obj) {
           endTarget.current.copy(obj.position)
           
           // Calculate camera distance
-          const distance = selectedPlanet.radius * (isMobile ? 10 : 6) + (isMobile ? 12 : 4)
+          const distance = selectedPlanet.radius * (isMobile ? 12 : 6) + (isMobile ? 15 : 4)
           const direction = new THREE.Vector3().subVectors(camera.position, obj.position).normalize()
           if (direction.lengthSq() < 0.1) direction.set(1, 0.4, 1).normalize()
           
           endCamPos.current.copy(obj.position).add(direction.multiplyScalar(distance))
           
-          // On mobile, we need the planet in the TOP 40% of the screen
+          // On mobile, we need the planet in the TOP 30% of the screen
           if (isMobile) {
-             // Target lower than the object to push object UP
-             endTarget.current.y -= selectedPlanet.radius * 4 + 2
-             endCamPos.current.y += selectedPlanet.radius * 2
+             // Super aggressive offset to ensure visibility
+             endTarget.current.y -= selectedPlanet.radius * 8 + 8
+             endCamPos.current.y += selectedPlanet.radius * 3
           } else {
              endCamPos.current.y += selectedPlanet.radius * 1.5
           }
@@ -80,7 +80,7 @@ export function CameraController() {
       if (targetObject.current) {
         const currentPos = new THREE.Vector3().copy(targetObject.current.position)
         if (isMobile && selectedPlanet) {
-           currentPos.y -= selectedPlanet.radius * 4 + 2
+           currentPos.y -= selectedPlanet.radius * 8 + 8
         }
         endTarget.current.copy(currentPos)
       }
@@ -90,10 +90,9 @@ export function CameraController() {
 
       if (t >= 1) isAnimating.current = false
     } else if (targetObject.current && selectedPlanet) {
-      // Keep following the target with offset
       const currentPos = new THREE.Vector3().copy(targetObject.current.position)
       if (isMobile) {
-        currentPos.y -= selectedPlanet.radius * 4 + 2
+        currentPos.y -= selectedPlanet.radius * 8 + 8
       }
       
       const deltaMove = new THREE.Vector3().subVectors(currentPos, controlsRef.current.target)
@@ -115,7 +114,7 @@ export function CameraController() {
       ref={controlsRef}
       makeDefault
       minDistance={1}
-      maxDistance={1000}
+      maxDistance={1200}
       enableDamping
       dampingFactor={0.05}
       rotateSpeed={isMobile ? 0.7 : 0.4}

@@ -28,7 +28,7 @@ export function Planet({ data }: PlanetProps) {
     return new THREE.MeshStandardMaterial({
       color: new THREE.Color(data.color),
       emissive: new THREE.Color(data.emissive),
-      emissiveIntensity: isSelected ? 0.8 : 0.3,
+      emissiveIntensity: isSelected ? 1.5 : 0.6,
       roughness: data.roughness,
       metalness: data.metalness,
     })
@@ -48,7 +48,7 @@ export function Planet({ data }: PlanetProps) {
 
   // Update emissive on selection change
   useMemo(() => {
-    planetMaterial.emissiveIntensity = isSelected ? 1.2 : isHovered ? 0.7 : 0.3
+    planetMaterial.emissiveIntensity = isSelected ? 2.5 : isHovered ? 1.5 : 0.6
   }, [isSelected, isHovered, planetMaterial])
 
   useFrame((_, delta) => {

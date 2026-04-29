@@ -48,13 +48,17 @@ export function ControlBar() {
     selectedPlanet
   } = useSimulation()
 
+  const isMobile = window.innerWidth < 640
+
+  if (isMobile && selectedPlanet) return null
+
   return (
     <motion.div
       initial={{ y: 80, opacity: 0 }}
       animate={{ 
         y: 0, 
         opacity: 1,
-        bottom: (selectedPlanet && window.innerWidth < 640) ? '51vh' : '1.5rem'
+        bottom: '1.5rem'
       }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
       className="fixed left-0 right-0 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 flex items-center justify-center px-4"

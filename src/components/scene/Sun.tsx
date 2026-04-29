@@ -19,7 +19,7 @@ export function Sun() {
     return new THREE.MeshStandardMaterial({
       color: new THREE.Color('#FDB813'),
       emissive: new THREE.Color('#FF6000'),
-      emissiveIntensity: 2.5,
+      emissiveIntensity: 4.5,
       roughness: 0.8,
       metalness: 0.0,
     })
@@ -71,13 +71,13 @@ export function Sun() {
       {/* Point light from the sun */}
       <pointLight
         position={[0, 0, 0]}
-        intensity={isMobile ? 150 : 300}
+        intensity={isMobile ? 300 : 600}
         color="#FFF8E7"
         decay={0.5}
         castShadow={!isMobile}
         shadow-mapSize={isMobile ? [512, 512] : [2048, 2048]}
       />
-      {!isMobile && <pointLight position={[0, 0, 0]} intensity={80} color="#FFB347" decay={0.3} />}
+      {!isMobile && <pointLight position={[0, 0, 0]} intensity={150} color="#FFB347" decay={0.3} />}
 
       {/* Sun surface */}
       <Sphere
