@@ -55,7 +55,7 @@ export function SolarSystemScene() {
 
         <CameraController />
 
-        <EffectComposer multisampling={isMobile ? 0 : 4} disableNormalPass>
+        <EffectComposer multisampling={isMobile ? 0 : 4} enableNormalPass={false}>
           <Bloom
             intensity={isMobile ? 0.8 : 1.2}
             luminanceThreshold={0.2}

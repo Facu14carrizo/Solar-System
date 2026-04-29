@@ -28,7 +28,7 @@ export function AsteroidBelt() {
 
   const tempObject = new THREE.Object3D()
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!meshRef.current) return
 
     asteroids.forEach((asteroid, i) => {
